@@ -1,27 +1,25 @@
-import postList from '../../data/posts-data.js'
+import postList from '../../../data/posts-data.js'
 
-// pages/posts/post.js
+// pages/posts/post-detail/post-detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
-  },
-
-  onTap(e){
-    wx.navigateTo({
-      url: `./post-detail/post-detail?postId=${e.currentTarget.dataset.postId}`,
-    })
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const postData = postList.filter(item=>{
+      return item.postId == options.postId
+    })[0]
+
     this.setData({
-      postList
+      postData
     })
   },
 
