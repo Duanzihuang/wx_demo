@@ -7,7 +7,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    isCollection:false, //是否收藏，默认false
+    postId:null
+  },
+
+  onColletionTap(){
+    //去获取本地中，该postId的收藏状态
+    const collectionInfo = wx.getStorageSync("collectionInfo")
+    let isCollection = collectionInfo[this.data.postId]
+
+    //取反
+    isCollection = !isCollection
+
+    //把结果保存到本地
+    collectionInfo[this.data.postId] = isCollection
+    wx.setStorageSync("collectionInfo", collectionInfo)
+
+    //更新视图的值
+    this.setData({
+      isCollection
+    })
+
+    wx.showToast({
+      title: isCollection ? '收藏成功':'取消收藏成功',
+    })
+
+  },
+
+  onShareTap(){
+    const itemList = [
+      "分享给微信好友",
+      "分享到朋友圈",
+      "分享到QQ",
+      "分享到微博"
+    ]
+
+    wx.showActionSheet({
+      itemList: itemList,
+      itemColor:"#405f80",
+      success(res){
+        wx.showModal({
+          title: `用户${itemList[res.tapIndex]}`,
+          content: `${res.errMsg}---${res.tapIndex}`,
+          confirmColor:"#405f80"
+        })
+      },
+      fail(res){
+        console.log(res)
+      }
+    })
   },
 
   /**
@@ -18,8 +66,18 @@ Page({
       return item.postId == options.postId
     })[0]
 
+    //去本地读取该postId的收藏状态，来显示对应的图片
+    let collectionInfo = wx.getStorageSync("collectionInfo")
+    if (!collectionInfo){ //不存在
+      collectionInfo = {}
+      collectionInfo[options.postId] = false
+      wx.setStorageSync("collectionInfo", collectionInfo)
+    }
+
     this.setData({
-      postData
+      postData,
+      postId: options.postId,
+      isCollection: collectionInfo[options.postId]
     })
   },
 
