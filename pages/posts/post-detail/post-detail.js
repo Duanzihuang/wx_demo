@@ -1,5 +1,7 @@
 import postList from '../../../data/posts-data.js'
 
+const globalData = getApp().globalData
+
 // pages/posts/post-detail/post-detail.js
 Page({
 
@@ -8,6 +10,7 @@ Page({
    */
   data: {
     isCollection:false, //是否收藏，默认false
+    isPlayingMusic:false,//是否播放音乐
     postId:null
   },
 
@@ -74,11 +77,70 @@ Page({
       wx.setStorageSync("collectionInfo", collectionInfo)
     }
 
+    //判断是否显示播放还是暂停音乐
+    if (globalData.g_isPlayingMusic && globalData.g_postId === options.postId){
+      this.setData({
+        isPlayingMusic: true
+      })
+    }
+
     this.setData({
       postData,
       postId: options.postId,
       isCollection: collectionInfo[options.postId]
     })
+
+    wx.onBackgroundAudioPlay(()=>{
+      if (globalData.g_postId===options.postId){
+        this.setData({
+          isPlayingMusic: true
+        })
+
+        globalData.g_isPlayingMusic = true
+        globalData.g_postId = options.postId
+      }
+    })
+
+    wx.onBackgroundAudioPause(()=>{
+      if (globalData.g_postId === options.postId) {
+        this.setData({
+          isPlayingMusic: false
+        })
+
+        globalData.g_isPlayingMusic = false
+        globalData.g_postId = options.postId
+      }
+    })
+  },
+
+  playOrPause(){
+    //获取对应的音乐数据
+    const music = this.data.postData.music
+
+    if (this.data.isPlayingMusic){//正在播放则暂停播放
+      wx.pauseBackgroundAudio()
+
+      this.setData({
+        isPlayingMusic:false
+      })
+
+      globalData.g_isPlayingMusic = false
+      globalData.g_postId = null
+    }else{//没有播放，则开始播放
+      wx.playBackgroundAudio({
+        dataUrl: music.url,
+        title:music.title,
+        coverImgUrl: music.coverImg
+      })
+
+      globalData.g_isPlayingMusic = true
+      globalData.g_postId = this.data.postId
+
+      this.setData({
+        isPlayingMusic: true
+      })
+    }
+
   },
 
   /**

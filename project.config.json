@@ -35,7 +35,14 @@
 				{
 					"id": -1,
 					"name": "文章列表页面",
-					"pathName": "pages/posts/post"
+					"pathName": "pages/posts/post",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "文章详情",
+					"pathName": "pages/posts/post-detail/post-detail",
+					"query": "postId=0"
 				}
 			]
 		}
