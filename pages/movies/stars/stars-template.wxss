@@ -1,0 +1,15 @@
+.stars-container{
+  display: flex;
+}
+
+.stars image{
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.stars-score{
+  margin-top: 15rpx;
+  margin-left: 15rpx;
+  vertical-align: middle;
+  font-size: 24rpx;
+}

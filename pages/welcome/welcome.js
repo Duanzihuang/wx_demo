@@ -8,5 +8,9 @@ Page({
           url: '/pages/posts/post'
           // url: '../posts/post',
         })
+
+        wx.switchTab({
+          url: '/pages/posts/post',
+        })
     }
 })

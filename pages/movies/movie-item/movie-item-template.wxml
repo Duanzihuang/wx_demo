@@ -1,0 +1,9 @@
+<import src="../stars/stars-template.wxml" />
+
+<template name="movieItemTemplate">
+  <view class="movie-item-container">
+    <image class="movie-item-image" src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.webp"></image>
+    <text class="movie-item-title">肖生克的救赎</text>
+    <template is="starsTemplate" />
+  </view>
+</template>

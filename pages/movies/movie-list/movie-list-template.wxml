@@ -1,0 +1,48 @@
+<import src="../movie-item/movie-item-template.wxml" />
+
+<template name="movieListTemplate">
+  <view class="movie-list-container">
+    <view class="head">
+      <text>正在热映</text>
+      <view class="more">
+        <text class="more-text">更多</text>
+        <image class="more-image" src="/images/icon/arrow-right.png"></image>
+      </view>
+    </view>
+    <view class="movie-item-content">
+      <template is="movieItemTemplate" />
+      <template is="movieItemTemplate" />
+      <template is="movieItemTemplate" />
+    </view>
+  </view>
+
+  <view class="movie-list-container">
+    <view class="head">
+      <text>即将上映</text>
+      <view class="more">
+        <text class="more-text">更多</text>
+        <image class="more-image" src="/images/icon/arrow-right.png"></image>
+      </view>
+    </view>
+    <view class="movie-item-content">
+      <template is="movieItemTemplate" />
+      <template is="movieItemTemplate" />
+      <template is="movieItemTemplate" />
+    </view>
+  </view>
+
+  <view class="movie-list-container">
+    <view class="head">
+      <text>Top250</text>
+      <view class="more">
+        <text class="more-text">更多</text>
+        <image class="more-image" src="/images/icon/arrow-right.png"></image>
+      </view>
+    </view>
+    <view class="movie-item-content">
+      <template is="movieItemTemplate" />
+      <template is="movieItemTemplate" />
+      <template is="movieItemTemplate" />
+    </view>
+  </view>
+</template>
