@@ -1,33 +1,27 @@
-import postList from '../../data/posts-data.js'
+// pages/movies/movie-more/movie-more.js
+import getData from '../../../utils/request.js'
+const globalData = getApp().globalData
 
-// pages/posts/post.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
-  },
-
-  onTap(e){
-    wx.navigateTo({
-      url: `./post-detail/post-detail?postId=${e.currentTarget.dataset.postId}`,
-    })
-  },
-
-  onSwiperTap(e){
-    wx.navigateTo({
-      url: `./post-detail/post-detail?postId=${e.target.dataset.postId}`,
-    })
+    type:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      postList
+    this.data.type = options.type
+
+    const url = `${globalData.api_host}getMovieListByType?type=${options.type}&start=0&count=20` 
+    console.log(url)
+    // console.log(getData)
+    getData(url).then(res=>{
+      console.log(res.data.subjects)
     })
   },
 
@@ -35,7 +29,22 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    let typeName = ""
+    switch (this.data.type){
+      case "in_theaters":
+        typeName="正在热映"
+        break
+      case "coming_soon":
+        typeName = "即将上映"
+        break
+      case "top250":
+        typeName = "Top250"
+        break
+    }
+
+    wx.setNavigationBarTitle({
+      title: typeName,
+    })
   },
 
   /**

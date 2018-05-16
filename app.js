@@ -35,6 +35,8 @@ App({
   },
   globalData: {
     g_isPlayingMusic: false,
-    g_postId:null
+    g_postId:null,
+    // doubanBase:"https://api.douban.com/"
+    api_host:"http://47.106.148.205:6688/",
   }
 })

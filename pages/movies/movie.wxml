@@ -1,5 +1,13 @@
 <import src="movie-list/movie-list-template.wxml" />
 
-<view>
-  <template is="movieListTemplate" />
+<view wx:if="{{top250}}">
+  <view>
+    <template is="movieListTemplate" data="{{...in_theaters}}" />
+  </view>
+  <view>
+    <template is="movieListTemplate" data="{{...coming_soon}}" />
+  </view>
+  <view>
+    <template is="movieListTemplate" data="{{...top250}}" />
+  </view>
 </view>

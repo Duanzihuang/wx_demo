@@ -2,8 +2,8 @@
 
 <template name="movieItemTemplate">
   <view class="movie-item-container">
-    <image class="movie-item-image" src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480747492.webp"></image>
-    <text class="movie-item-title">肖生克的救赎</text>
+    <image class="movie-item-image" src="{{imgUrl}}"></image>
+    <text class="movie-item-title">{{title}}</text>
     <template is="starsTemplate" />
   </view>
 </template>

@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -47,7 +47,14 @@
 				{
 					"id": -1,
 					"name": "电影列表",
-					"pathName": "pages/movies/movie"
+					"pathName": "pages/movies/movie",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "更多电影",
+					"pathName": "pages/movies/movie-more/movie-more",
+					"query": "type=\"top250\""
 				}
 			]
 		}
