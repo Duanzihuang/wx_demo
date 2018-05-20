@@ -6,9 +6,10 @@ page{
 .movie-list-container{
   display: flex;
   flex-direction: column;
-  padding: 20rpx;
+  padding: 20rpx; 
   margin-bottom: 30rpx;
   background-color: #fff;
+   justify-content: space-between; 
 }
 
 .head{

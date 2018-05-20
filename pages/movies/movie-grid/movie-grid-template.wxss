@@ -1,0 +1,12 @@
+@import "../movie-item/movie-item-template.wxss";
+
+.movie-grid-container{
+  padding: 40rpx 0rpx 40rpx 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.movie-grid-container-item{
+  width: 33.3333333333333%
+}

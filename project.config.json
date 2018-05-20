@@ -54,7 +54,7 @@
 					"id": 3,
 					"name": "更多电影",
 					"pathName": "pages/movies/movie-more/movie-more",
-					"query": "type=\"top250\""
+					"query": "type=top250"
 				}
 			]
 		}

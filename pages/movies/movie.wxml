@@ -1,13 +1,33 @@
 <import src="movie-list/movie-list-template.wxml" />
+<import src="movie-grid/movie-grid-template.wxml" />
 
-<view wx:if="{{top250}}">
-  <view>
-    <template is="movieListTemplate" data="{{...in_theaters}}" />
+<!-- 搜索 -->
+<view class="search-container">
+  <icon color="#405f80" size="13" type="search"></icon>
+  <input value="{{keyword}}" placeholder="输入关键字搜索名字" placeholder-class="placeholder" bindconfirm="search" bindfocus="onSearchFocus"></input>
+  <image wx:if="{{isShowSearch}}" bindtap='closeSearch' src="/images/icon/xx.png"></image>
+</view>
+
+<view wx:if="{{isShowContent}}">
+  <view wx:if="{{top250}}">
+    <view>
+      <!-- 我是列表 -->
+      <template is="movieListTemplate" data="{{...in_theaters}}" />
+    </view>
+    <view>
+      <template is="movieListTemplate" data="{{...coming_soon}}" />
+    </view>
+    <view>
+      <template is="movieListTemplate" data="{{...top250}}" />
+    </view>
   </view>
-  <view>
-    <template is="movieListTemplate" data="{{...coming_soon}}" />
-  </view>
-  <view>
-    <template is="movieListTemplate" data="{{...top250}}" />
+</view>
+
+<view wx:if="{{isShowSearch}}">
+  <template is="movieGridTemplate" data="{{movieList}}" />
+
+  <view wx:if="{{beginSearch}}">
+    <view wx:if="{{hasMore}}" class="loadmore loading">正在加载...</view>
+    <view wx:else class="loadmore">没有更多内容了</view>
   </view>
 </view>
